@@ -17,13 +17,27 @@ class CorsMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Má prática: permitir todas as origens sem restrições
         $response = $next($request);
-        
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-        
+
+        // Obter configurações do CORS
+        $allowedOrigins = config('cors.allowed_origins', []);
+        $origin = $request->header('Origin');
+
+        // Verificar se a origem é permitida
+        if ($origin && in_array($origin, $allowedOrigins)) {
+            $response->headers->set('Access-Control-Allow-Origin', $origin);
+        }
+
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept');
+        $response->headers->set('Access-Control-Max-Age', '86400'); // 24 horas
+
+        // Responder a requisições OPTIONS (preflight)
+        if ($request->isMethod('OPTIONS')) {
+            $response->setStatusCode(200);
+            $response->setContent('');
+        }
+
         return $response;
     }
 }
