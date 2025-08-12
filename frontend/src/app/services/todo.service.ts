@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { ApiService } from './api.service';
+import { HttpClient } from '@angular/common/http';
 import { Todo, CreateTodoRequest, UpdateTodoRequest, TodosListResponse } from '../models/todo.interface';
 
 @Injectable({
@@ -11,10 +11,10 @@ export class TodoService {
   private todosSubject = new BehaviorSubject<Todo[]>([]);
   public todos$ = this.todosSubject.asObservable();
 
-  constructor(private apiService: ApiService) {}
+  constructor(private http: HttpClient) {}
 
   loadAllTodos(): Observable<Todo[]> {
-    return this.apiService.get<TodosListResponse>('/api/tarefas')
+    return this.http.get<TodosListResponse>('/api/tarefas')
       .pipe(
         map(response => {
           if (response.success && response.data) {
@@ -29,7 +29,7 @@ export class TodoService {
   }
 
   addTodo(todo: CreateTodoRequest): Observable<Todo> {
-    return this.apiService.post<any>('/api/tarefas', todo)
+    return this.http.post<any>('/api/tarefas', todo)
       .pipe(
         switchMap((response: any) => {
           const created = response && typeof response === 'object' && 'data' in response
@@ -49,7 +49,7 @@ export class TodoService {
   }
 
   updateTodo(id: number, updates: UpdateTodoRequest): Observable<Todo> {
-    return this.apiService.put<Todo>(`/api/tarefas/${id}`, updates)
+    return this.http.put<Todo>(`/api/tarefas/${id}`, updates)
       .pipe(
         map(updatedTodo => {
           const currentTodos = this.todosSubject.value;
@@ -66,7 +66,7 @@ export class TodoService {
   }
 
   deleteTodo(id: number): Observable<Todo> {
-    return this.apiService.delete<Todo>(`/api/tarefas/${id}`)
+    return this.http.delete<Todo>(`/api/tarefas/${id}`)
       .pipe(
         map(response => {
           const currentTodos = this.todosSubject.value;

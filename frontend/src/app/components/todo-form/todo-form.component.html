@@ -9,23 +9,23 @@
         placeholder="Digite uma nova tarefa"
         class="form-input"
         [disabled]="isSubmitting"
-        [attr.aria-describedby]="titleControl?.errors ? 'title-error' : null"
-        [attr.aria-invalid]="titleControl?.errors ? 'true' : 'false'"
+        [attr.aria-describedby]="form.get('title')?.errors ? 'title-error' : null"
+        [attr.aria-invalid]="form.get('title')?.errors ? 'true' : 'false'"
         required
       />
       <div 
         id="title-error" 
         class="error-message" 
-        *ngIf="titleControl?.errors && titleControl?.touched"
+        *ngIf="form.get('title')?.errors && form.get('title')?.touched"
         role="alert"
       >
-        <span class="visually-hidden" *ngIf="titleControl?.errors?.['required']">O título da tarefa é obrigatório.</span>
-        <span class="visually-hidden" *ngIf="titleControl?.errors?.['minlength']">O título deve ter pelo menos 1 caracteres.</span>
+        <span class="visually-hidden" *ngIf="form.get('title')?.errors?.['required']">O título da tarefa é obrigatório.</span>
+        <span class="visually-hidden" *ngIf="form.get('title')?.errors?.['minlength']">O título deve ter pelo menos 3 caracteres.</span>
       </div>
       <button 
         type="submit"
         class="btn"
-        [disabled]="isSubmitting || !titleControl?.value?.toString().trim() || form.invalid"
+        [disabled]="isSubmitting || !form.get('title')?.value?.toString().trim() || form.invalid"
         [attr.aria-describedby]="isSubmitting ? 'submit-status' : null"
       >
         <span *ngIf="!isSubmitting">Adicionar</span>

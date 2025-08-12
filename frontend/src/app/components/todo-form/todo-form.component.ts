@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateTodoRequest } from '../../models/todo.interface';
@@ -11,32 +11,30 @@ import { CreateTodoRequest } from '../../models/todo.interface';
   styleUrl: './todo-form.component.scss'
 })
 export class TodoFormComponent {
-  @Output() addTodo = new EventEmitter<CreateTodoRequest>();
-  
-  form: FormGroup;
-  isSubmitting = false;
+  public form!: FormGroup;
+  public isSubmitting = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  private formBuilder = inject(FormBuilder);
+
+  @Output() addTodo = new EventEmitter<CreateTodoRequest>();
+
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
       title: ['', [
         Validators.required, 
-        Validators.minLength(1), 
+        Validators.minLength(3), 
         Validators.maxLength(200)
       ]]
     });
   }
 
-  get titleControl() {
-    return this.form.get('title');
-  }
-
-  onSubmit(): void {
+  public onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    const trimmedTitle = this.titleControl?.value.trim();
+    const trimmedTitle = this.form.get('title')?.value.trim();
 
     if (!trimmedTitle || trimmedTitle.length < 3) {
       return;

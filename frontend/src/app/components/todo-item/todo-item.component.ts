@@ -14,7 +14,7 @@ export class TodoItemComponent {
   @Output() toggleStatus = new EventEmitter<{ id: number; completed: boolean }>();
   @Output() remove = new EventEmitter<number>();
 
-  onToggleStatus(): void {
+  public onToggleStatus(): void {
     if (this.todo?.id == null) {
       return;
     }
@@ -25,7 +25,7 @@ export class TodoItemComponent {
     });
   }
 
-  onRemove(): void {
+  public onRemove(): void {
     this.remove.emit(this.todo.id);
   }
 }
