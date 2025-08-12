@@ -3,8 +3,8 @@
 .todo-list {
   padding: 1rem;
   background-color: $color-neutral-50;
-  border: 1px solid $color-neutral-200;
-  border-radius: 4px;
+  border: 0.0625rem solid $color-neutral-200;
+  border-radius: 0.25rem;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -34,21 +34,21 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-right: 4px;
+  padding-right: 0.25rem;
   min-height: 0;
   
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 0.5rem;
   }
   
   &::-webkit-scrollbar-track {
     background: $color-neutral-100;
-    border-radius: 4px;
+    border-radius: 0.25rem;
   }
   
   &::-webkit-scrollbar-thumb {
     background: $color-neutral-300;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     
     &:hover {
       background: $color-neutral-400;

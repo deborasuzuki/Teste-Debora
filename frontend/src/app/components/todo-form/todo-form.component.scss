@@ -2,27 +2,27 @@
 
 .form-group {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 0.625rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-input {
-  width: 300px;
-  padding: 8px;
-  border: 1px solid $border-light;
-  border-radius: 4px;
+  width: 18.75rem;
+  padding: 0.5rem;
+  border: 0.0625rem solid $border-light;
+  border-radius: 0.25rem;
 }
 
 .btn {
-  padding: 8px 16px;
-  margin-left: 10px;
+  padding: 0.5rem 1rem;
+  margin-left: 0.625rem;
   background-color: $color-success-700;
   color: $color-neutral-50;
   font-size: $font-size-base;
   font-weight: $font-weight-bold;
   line-height: $line-height-normal;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 
   cursor: pointer;
 
@@ -36,6 +36,18 @@
   cursor: not-allowed;
 }
 
+@media (max-width: 23.4375rem) { // 375px
+  .form-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
+  .form-input {
+    width: 100%;
+  }
 
-
+  .btn {
+    margin-left: 0;
+    width: 100%;
+  }
+}

@@ -26,32 +26,39 @@ button, input, textarea, select {
 /* Skip link para acessibilidade */
 .skip-link {
   position: absolute;
-  top: -40px;
-  left: 6px;
+  top: -2.5rem;
+  left: 0.375rem;
   background: var(--color-primary-600);
   color: white;
-  padding: 8px;
+  padding: 0.5rem;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   z-index: 1000;
   transition: top 0.3s;
 }
 
 .skip-link:focus {
-  top: 6px;
+  top: 0.375rem;
 }
 
 /* Classes utilitárias para leitores de tela */
 .visually-hidden {
   position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
+  width: 0.0625rem !important;
+  height: 0.0625rem !important;
   padding: 0 !important;
-  margin: -1px !important;
+  margin: -0.0625rem !important;
   overflow: hidden !important;
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+}
+
+/* Ajustes simples para telas pequenas (375px) */
+@media (max-width: 23.4375rem) {
+  .app-container {
+    padding: 1rem;
+  }
 }
 
 /* Classes utilitárias básicas */

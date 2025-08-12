@@ -3,7 +3,7 @@
 .app-container {
   min-height: 100vh;
   height: 100vh;
-  padding: 20px;
+  padding: 1.25rem;
   font-family: $font-family-primary;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
 }
 
 .app-header {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   flex-shrink: 0;
   
   h1 {
@@ -24,7 +24,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
   min-height: 0;
   overflow: hidden;
 }
@@ -32,13 +32,13 @@
 .todo-section {
   &:first-child {
     flex-shrink: 0;
-    max-height: 120px;
+    max-height: 7.5rem;
   }
   
   &:last-child {
     flex: 1;
     min-height: 0;
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 12.5rem);
   }
 }
 
