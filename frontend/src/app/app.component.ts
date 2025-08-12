@@ -15,7 +15,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'Todo List';
+  title = 'Lista de Tarefas';
   todos: Todo[] = [];
   loading = false;
   private destroy$ = new Subject<void>();
@@ -40,10 +40,12 @@ export class AppComponent implements OnInit, OnDestroy {
         next: (todos) => {
           this.todos = todos;
           this.loading = false;
+          this.announceStatus(`Carregadas ${todos.length} tarefas`);
         },
         error: (error) => {
           console.error('Erro ao carregar tarefas:', error);
           this.loading = false;
+          this.announceStatus('Erro ao carregar tarefas');
         }
       });
   }
@@ -61,20 +63,26 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (newTodo) => {
+          this.announceStatus(`Tarefa "${todoData.title}" adicionada com sucesso`);
         },
         error: (error) => {
           console.error('Erro ao adicionar tarefa:', error);
+          this.announceStatus('Erro ao adicionar tarefa');
         }
       });
   }
 
   onToggleStatus(event: { id: number; completed: boolean }): void {
+    const status = event.completed ? 'concluída' : 'marcada como não concluída';
     this.todoService.toggleTodoStatus(event.id, event.completed)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: () => {},
+        next: () => {
+          this.announceStatus(`Tarefa ${status}`);
+        },
         error: (error) => {
           console.error('Erro ao atualizar tarefa:', error);
+          this.announceStatus('Erro ao atualizar tarefa');
         }
       });
   }
@@ -84,10 +92,22 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
+          this.announceStatus('Tarefa removida com sucesso');
         },
         error: (error) => {
           console.error('Erro ao remover tarefa:', error);
+          this.announceStatus('Erro ao remover tarefa');
         }
       });
+  }
+
+  private announceStatus(message: string): void {
+    const statusElement = document.getElementById('status-messages');
+    if (statusElement) {
+      statusElement.textContent = message;
+      setTimeout(() => {
+        statusElement.textContent = '';
+      }, 300);
+    }
   }
 }

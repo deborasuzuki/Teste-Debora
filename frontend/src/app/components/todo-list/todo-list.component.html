@@ -1,18 +1,28 @@
-<div class="todo-list">
+<div class="todo-list" role="region" aria-labelledby="list-title">
   <header class="list-header">
-    <h2>Tarefas</h2>
+    <h2 id="list-title">Tarefas</h2>
+    <div class="list-summary" class="visually-hidden" aria-live="polite">
+      <span *ngIf="!loading && todos.length > 0">
+        {{ todos.length }} {{ todos.length === 1 ? 'tarefa' : 'tarefas' }} encontrada{{ todos.length === 1 ? '' : 's' }}
+      </span>
+    </div>
   </header>
   
-  <div class="loading-state" *ngIf="loading">
-    <div class="spinner"></div>
+  <div class="loading-state" *ngIf="loading" role="status" aria-live="polite">
+    <div class="spinner" aria-hidden="true"></div>
     <p>Carregando tarefas...</p>
   </div>
   
-  <div class="empty-state" *ngIf="!loading && todos.length === 0">
-    <p>Nenhuma tarefa encontrada.</p>
+  <div class="empty-state" *ngIf="!loading && todos.length === 0" role="status">
+    <p>Nenhuma tarefa encontrada. Adicione uma nova tarefa para começar.</p>
   </div>
   
-  <ul class="todos-container" *ngIf="!loading && todos.length > 0">
+  <ul 
+    class="todos-container" 
+    *ngIf="!loading && todos.length > 0"
+    role="list"
+    aria-label="Lista de tarefas"
+  >
     <app-todo-item
       *ngFor="let todo of todos; trackBy: trackByTodoId"
       [todo]="todo"

@@ -18,7 +18,11 @@ export class TodoFormComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200)]]
+      title: ['', [
+        Validators.required, 
+        Validators.minLength(1), 
+        Validators.maxLength(200)
+      ]]
     });
   }
 
@@ -28,10 +32,15 @@ export class TodoFormComponent {
 
   onSubmit(): void {
     if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
 
     const trimmedTitle = this.titleControl?.value.trim();
+
+    if (!trimmedTitle || trimmedTitle.length < 3) {
+      return;
+    }
 
     this.isSubmitting = true;
     this.addTodo.emit({ title: trimmedTitle });
@@ -40,6 +49,7 @@ export class TodoFormComponent {
 
   private resetForm(): void {
     this.form.reset({ title: '' });
+    this.form.markAsUntouched();
     this.isSubmitting = false;
   }
 }
