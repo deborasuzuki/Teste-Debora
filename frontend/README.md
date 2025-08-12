@@ -84,7 +84,6 @@ npm install
 npm start          # Desenvolvimento
 npm run build      # Build de produção
 npm run test       # Testes unitários
-npm run test:coverage # Cobertura de testes
 ```
 
 ## 📚 Documentação Adicional

@@ -1,7 +1,7 @@
 <div class="todo-list" role="region" aria-labelledby="list-title">
   <header class="list-header">
     <h2 id="list-title">Tarefas</h2>
-    <div class="list-summary" class="visually-hidden" aria-live="polite">
+    <div class="list-summary visually-hidden" aria-live="polite">
       <span *ngIf="!loading && todos.length > 0">
         {{ todos.length }} {{ todos.length === 1 ? 'tarefa' : 'tarefas' }} encontrada{{ todos.length === 1 ? '' : 's' }}
       </span>

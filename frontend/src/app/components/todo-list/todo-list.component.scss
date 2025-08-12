@@ -5,6 +5,11 @@
   background-color: $color-neutral-50;
   border: 1px solid $color-neutral-200;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 .list-header {
@@ -12,11 +17,47 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  flex-shrink: 0;
 
   .stat-item {
     font-size: $font-size-sm;
     color: $color-neutral-700;
   }
+}
+
+.loading-state,
+.empty-state {
+  flex-shrink: 0;
+}
+
+.todos-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  min-height: 0;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $color-neutral-100;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $color-neutral-300;
+    border-radius: 4px;
+    
+    &:hover {
+      background: $color-neutral-400;
+    }
+  }
+  
+  // Para Firefox
+  scrollbar-width: thin;
+  scrollbar-color: $color-neutral-300 $color-neutral-100;
 }
 
 
