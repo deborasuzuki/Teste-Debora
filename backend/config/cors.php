@@ -20,13 +20,14 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        'http://localhost:3000',     // React/Vue padrão
-        'http://localhost:4200', 
-        'http://localhost:5173',     // Vite padrão
-        'http://localhost:8080',     // Vue CLI padrão
+        'http://localhost:3000',
+        'http://localhost:5173',
+        'http://localhost:8080',
+        'http://localhost:4200',
         'http://127.0.0.1:3000',
         'http://127.0.0.1:5173',
         'http://127.0.0.1:8080',
+        'http://127.0.0.1:4200',
         // Adicione aqui os domínios do seu frontend em produção
     ],
 

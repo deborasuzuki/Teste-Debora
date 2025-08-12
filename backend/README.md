@@ -204,3 +204,6 @@ Para dúvidas ou problemas:
 - **v1.1.0**: Adicionado sistema de prioridades e datas
 - **v1.2.0**: Implementado filtros e busca avançada
 - **v1.3.0**: Adicionado testes e documentação completa
+
+
+**Refator do backend realidado com suporte de IA.

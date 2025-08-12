@@ -345,6 +345,7 @@ await api.delete('/tarefas/1');
 
 A API está configurada para aceitar requisições dos seguintes domínios:
 - `http://localhost:3000` (React padrão)
+- `http://localhost:4200` (Angular padrão)
 - `http://localhost:5173` (Vite padrão)
 - `http://localhost:8080` (Vue CLI padrão)
 
