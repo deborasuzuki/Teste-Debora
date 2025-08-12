@@ -1,0 +1,23 @@
+<div class="todo-list">
+  <header class="list-header">
+    <h2>Tarefas</h2>
+  </header>
+  
+  <div class="loading-state" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Carregando tarefas...</p>
+  </div>
+  
+  <div class="empty-state" *ngIf="!loading && todos.length === 0">
+    <p>Nenhuma tarefa encontrada.</p>
+  </div>
+  
+  <ul class="todos-container" *ngIf="!loading && todos.length > 0">
+    <app-todo-item
+      *ngFor="let todo of todos; trackBy: trackByTodoId"
+      [todo]="todo"
+      (toggleStatus)="onToggleStatus($event)"
+      (remove)="onRemove($event)"
+    ></app-todo-item>
+  </ul>
+</div>

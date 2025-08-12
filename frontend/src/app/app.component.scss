@@ -1,0 +1,17 @@
+@import '../styles/_variables.scss';
+
+.app-container {
+  min-height: 100vh;
+  padding: 20px;
+  font-family: $font-family-primary;
+}
+
+.app-header {
+  margin-bottom: 20px;
+  
+  h1 {
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+  }
+}
+

@@ -1,0 +1,41 @@
+@import '../../../styles/_variables.scss';
+
+.form-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-input {
+  width: 300px;
+  padding: 8px;
+  border: 1px solid $border-light;
+  border-radius: 4px;
+}
+
+.btn {
+  padding: 8px 16px;
+  margin-left: 10px;
+  background-color: $color-success-700;
+  color: $color-neutral-50;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-normal;
+  border: none;
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-success-500;
+  }
+}
+
+.btn:disabled {
+  background-color: $color-success-100;
+  cursor: not-allowed;
+}
+
+
+
+

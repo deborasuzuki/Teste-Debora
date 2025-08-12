@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================================================
+   Estilos Globais da Aplicação
+   ========================================================================== */
+
+/* Importar reset CSS e variáveis */
+@use 'styles/reset';
+@use 'styles/variables' as *;
+
+/* Estilos base do corpo da aplicação */
+body {
+  font-family: var(--font-family-primary);
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilos para elementos interativos */
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+/* Classes utilitárias básicas */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+
+.font-medium { font-weight: $font-weight-medium; }
+.font-semibold { font-weight: $font-weight-semibold; }
+.font-bold { font-weight: $font-weight-bold; }

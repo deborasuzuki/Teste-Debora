@@ -1,0 +1,27 @@
+<li class="todo-item" [class.completed]="todo.completed">
+  <div class="todo-content">
+    <label class="checkbox-label">
+      <input 
+        type="checkbox" 
+        [checked]="todo.completed"
+        (change)="onToggleStatus()"
+        class="checkbox-input"
+        [attr.aria-label]="'Marcar como ' + (todo.completed ? 'não concluída' : 'concluída')"
+      />
+      <span class="todo-title" [class.completed]="todo.completed">
+        {{ todo.title || 'Título não disponível' }}
+      </span>
+    </label>
+  </div>
+  
+  <div class="todo-actions">   
+    <button 
+      class="btn"
+      (click)="onRemove()"
+      title="Remover tarefa"
+      aria-label="Remover tarefa"
+    >
+      <span class="icon">×</span>
+    </button>
+  </div>
+</li>

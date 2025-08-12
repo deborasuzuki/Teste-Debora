@@ -1,0 +1,23 @@
+@import '../../../styles/_variables.scss';
+
+.todo-list {
+  padding: 1rem;
+  background-color: $color-neutral-50;
+  border: 1px solid $color-neutral-200;
+  border-radius: 4px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .stat-item {
+    font-size: $font-size-sm;
+    color: $color-neutral-700;
+  }
+}
+
+
+

@@ -1,0 +1,21 @@
+<div class="todo-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input 
+        type="text" 
+        formControlName="title"
+        placeholder="Digite uma nova tarefa"
+        class="form-input"
+        [disabled]="isSubmitting"
+      />
+      <button 
+        type="submit"
+        class="btn"
+        [disabled]="isSubmitting || !titleControl?.value?.toString().trim() || form.invalid"
+      >
+        <span *ngIf="!isSubmitting">Adicionar</span>
+        <span *ngIf="isSubmitting">Adicionando...</span>
+      </button>
+    </div>
+  </form>
+</div>
